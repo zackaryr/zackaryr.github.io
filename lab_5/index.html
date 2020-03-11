@@ -20,7 +20,9 @@
   <script>
     const content = document.querySelector(".header");
     content.innerHTML = "Zackary's List of Countries";
-
+    const olist = document.createElement("ol");
+    olist.className = "countries";
+    content.appendChild(olist);
     /* N.B. - For your lab, use the variable "countries" now available on the window space */
     const countries = [
       { "name": "Afghanistan", "code": "AF" },
