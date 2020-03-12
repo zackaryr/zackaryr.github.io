@@ -275,7 +275,7 @@
       var i;
       for (i = 0; i < 25; i++) {
         var indexNumber = Math.floor(Math.random() * 242);
-        var selection = countries[indexNumber];
+        var selection = [countries[indexNumber].name, countries[indexNumber].code;]
         var li = document.createElement("li");
         li.appendChild(document.createTextNode(selection));
         olist.appendChild(li);
