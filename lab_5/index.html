@@ -18,12 +18,9 @@
     </div>
   </div>
   <script>
+    document.querySelector("ol").remove();
     const header = document.querySelector(".header");
     header.innerHTML = "Zackary's List of Countries";
-    const olist = document.createElement("ol");
-    olist.className = "countries";
-    const content = document.querySelector(".content");
-    content.appendChild(olist);
     /* N.B. - For your lab, use the variable "countries" now available on the window space */
     const countries = [
       { "name": "Afghanistan", "code": "AF" },
@@ -272,6 +269,10 @@
     ]
     console.log("List of countries in the world", countries);
     function random() {
+      const olist = document.createElement("ol");
+      olist.className = "countries";
+      const content = document.querySelector(".content");
+      content.appendChild(olist);
       var i;
       for (i = 0; i < 25; i++) {
         var indexNumber = Math.floor(Math.random() * 242);
