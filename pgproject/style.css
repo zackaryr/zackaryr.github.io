@@ -6,3 +6,7 @@ body {
     margin: auto;
     width: 50%;
 }
+
+.mapdiv svg {
+    stroke: black;
+}
