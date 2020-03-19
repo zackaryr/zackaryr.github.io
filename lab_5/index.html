@@ -20,7 +20,6 @@
   <script>
     const header = document.querySelector(".header");
     header.innerHTML = "Zackary's List of Countries";
-    document.querySelector("ol").remove();
     /* N.B. - For your lab, use the variable "countries" now available on the window space */
     const countries = [
       { "name": "Afghanistan", "code": "AF" },
@@ -267,19 +266,21 @@
       { "name": "Zambia", "code": "ZM" },
       { "name": "Zimbabwe", "code": "ZW" }
     ]
+    const olist = document.createElement("ol");
+    olist.className = "countries";
+    const content = document.querySelector(".content");
+    content.appendChild(olist);
     console.log("List of countries in the world", countries);
     function random() {
-      const olist = document.createElement("ol");
-      olist.className = "countries";
-      const content = document.querySelector(".content");
-      content.appendChild(olist);
       var i;
       for (i = 0; i < 25; i++) {
         var indexNumber = Math.floor(Math.random() * 242);
         var selection = [countries[indexNumber].name, countries[indexNumber].code];
-        var li = document.createElement("li");
-        li.appendChild(document.createTextNode(selection));
-        olist.appendChild(li);
+        var li_elm = document.createElement("li");
+        li_elm.appendChild(document.createTextNode(selection));
+        if (!(li_elm in olist)) {
+          olist.appendChild(li_elm);
+        }
       }
     }
   </script>
