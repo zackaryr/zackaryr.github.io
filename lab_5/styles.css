@@ -101,3 +101,7 @@ h3 {
   position: relative;
   top: 1px;
 }
+
+.code_text {
+  font-weight: bold;
+}

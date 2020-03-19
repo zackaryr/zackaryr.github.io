@@ -275,7 +275,9 @@
       var i;
       for (i = 0; i < 25; i++) {
         var indexNumber = Math.floor(Math.random() * 242);
-        var selection = [countries[indexNumber].name, countries[indexNumber].code];
+        var code_txt = countries[indexNumber].code;
+        var country_txt = countries[indexNumber].name;
+        var selection = code_txt + " " + country_txt;
         var li_elm = document.createElement("li");
         li_elm.appendChild(document.createTextNode(selection));
         if (!(li_elm in olist)) {
