@@ -2,6 +2,8 @@
 <html lang="en">
   <head>
     <title>Maps Lab</title>
+    <link rel="stylesheet" href="leaflet/leaflet.css" />
+    <script src="leaflet/leaflet.js"></script>
     <link rel="stylesheet" type="text/css" href="./styles.css" />
     <link
       rel="stylesheet"
@@ -21,13 +23,32 @@
       <div class="wrapper">
         <div class="header">Frontend Libraries: Maps Lab</div>
         <div class="content">
-          When your lab is done, this should be replaced with a stylish map.
+          <div id="mapid"></div>
         </div>
         <div class="footer">Make some markers work!</div>
       </div>
     </div>
     <script>
-        /* Your lab code can go here, or in an external file you include */
+        var mymap = L.map('mapid').setView([38.9860, -76.9451], 13)
+        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox/streets-v11',
+    tileSize: 512,
+    zoomOffset: -1,
+    accessToken: 'pk.eyJ1IjoiemFja2FyeXIiLCJhIjoiY2s4a2twYmZ0MDIyNTNtbnp1djV2dHl0aiJ9.pwyT2m4i_ezaADcAgrQJow'
+}).addTo(mymap);
+var circle = L.circle([38.9860, -76.9451], {
+    color: 'red',
+    fillColor: 'yellow',
+    fillOpacity: 0.5,
+    radius: 500
+}).addTo(mymap);
+circle.bindPopup("McKeldin Library");
+var posArray = [[39.095491,-76.838165],[38.983881,-76.729269],[38.997563,-76.910024]];
+posArray.forEach(pos => {
+  var marker = L.marker(pos).addTo(mymap);
+});
     </script>
   </body>
 </html>
