@@ -10,7 +10,8 @@
       <div class="wrapper">
         <div class="header">Frontend Libraries: Charts Lab</div>
         <div class="content">
-          When your lab is done, this should be replaced with a useful chart full of food data.
+          <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+          <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
         </div>
         <div class="footer">Let's eat out in the future!</div>
       </div>
@@ -49,7 +50,37 @@
         })
         .then((results) => {
           console.log(results);
-        })
+          var chart = new CanvasJS.Chart("chartContainer", {
+            exportEnabled: true,
+            animationEnabled: true,
+            title:{
+              text: "Let's Find Somewhere To Eat",
+            },
+            legend:{
+              cursor: "pointer",
+              itemclick: explodePie
+            },
+            data: [
+              {
+              type: "pie",
+              showInLegend: true,
+              toolTipContent: "{name}: <strong>{y}%</strong>",
+              indexLabel: "{label} - {y}%",
+              dataPoints: results
+            },
+          ],
+        });
+        chart.render();
+      },
+      function explodePie (e) {
+        if(typeof (e.dataSeries.dataPoints[e.dataPointIndex].exploded) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
+e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
+	} else {
+		e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
+	}
+  e.chart.render();
+}
+);
     </script>
   </body>
 </html>
