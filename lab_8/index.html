@@ -34,10 +34,21 @@
             }
             c[current.category].push(current);
             return c;
-          }, {})
+          }, {});
         })
         .then((data) => {
           console.log('new data', data);
+          const reformattedData = Object.entries(data).map((m, i) => {
+            console.m;
+            return {
+              y: m[1].length,
+              label: m[0],
+            };
+          });
+          return reformattedData;
+        })
+        .then((results) => {
+          console.log(results);
         })
     </script>
   </body>
