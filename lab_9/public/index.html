@@ -21,20 +21,21 @@
       .then(res => res.json())
       .then(res => {
         const chart = new CanvasJS.Chart("chartContainer", {
-	animationEnabled: true,
-	title: {
-		text: "Let's Find Somewhere To Eat"
-	},
-	data: [{
-		type: "pie",
-		startAngle: 240,
-		yValueFormatString: "##0.00\"%\"",
-		indexLabel: "{label} {y}",
-		dataPoints: res
-	}]
-});
+	      animationEnabled: true,
+	      title: {
+		    text: "Let's Find Somewhere To Eat"
+	      },
+	      data: [{
+		    type: "pie",
+	    	startAngle: 240,
+	    	yValueFormatString: "##0.00\"%\"",
+	    	indexLabel: "{label} {y}",
+	    	dataPoints: res
+	    }]
+    });
 chart.render();
       })
+console.log(res);
   </script>
 </body>
 
