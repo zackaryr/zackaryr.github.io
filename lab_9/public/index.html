@@ -15,10 +15,23 @@
     </div>
   </div>
   <script>
-    fetch('/api') // Rather than fetching from PG County, we're going to fetch from our own server.
+    fetch('http://localhost:3000/api') // Rather than fetching from PG County, we're going to fetch from our own server.
       .then(res => res.json())
       .then(res => {
-        // Here's where your chart code should go.
+        const chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	title: {
+		text: "Let's Find Somewhere To Eat"
+	},
+	data: [{
+		type: "pie",
+		startAngle: 240,
+		yValueFormatString: "##0.00\"%\"",
+		indexLabel: "{label} {y}",
+		dataPoints: results
+	}]
+});
+chart.render();
       })
   </script>
 </body>
