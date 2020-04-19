@@ -22,13 +22,38 @@ app.use(express.static('public'));
 
 
 function processDataForFrontEnd(req, res) {
-  const baseURL = ''; // Enter the URL for the data you would like to retrieve here
+  const baseURL = 'https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json'; // Enter the URL for the data you would like to retrieve here
 
   // Your Fetch API call starts here
   // Note that at no point do you "return" anything from this function -
   // it instead handles returning data to your front end at line 34.
     fetch(baseURL)
-      .then((r) => r.json())
+      .then((data) => data.json())
+      .then((data) => { // this is an explicit return. If I want my information to go further, I'll need to use the "return" keyword before the brackets close
+          console.log(data);
+          console.log(data.length);
+          return data;
+        })
+        .then((data) => {
+          return data.reduce((c, current) => {
+            if (!c[current.category]) {
+              c[current.category] = [];
+            }
+            c[current.category].push(current);
+            return c;
+          }, {});
+        })
+        .then((data) => {
+          console.log('new data', data);
+          const reformattedData = Object.entries(data).map((m, i) => {
+            console.m;
+            return {
+              y: m[1].length,
+              label: m[0],
+            };
+          });
+          return reformattedData;
+        })
       .then((data) => {
         console.log(data);
         res.send({ data: data }); // here's where we return data to the front end
