@@ -43,7 +43,8 @@ function processDataForFrontEnd(req, res) {
 // Syntax change - we don't want to repeat ourselves,
 // or we'll end up with spelling errors in our endpoints.
 //
-app.route("/api")
+app
+  .route("/api")
   .get((req, res) => {
     processDataForFrontEnd(req, res)
     (async () => {
